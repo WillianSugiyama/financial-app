@@ -1,0 +1,16 @@
+# Configurações básicas do cluster
+cluster.name: "finance-app-cluster"
+node.name: "finance-elasticsearch"
+network.host: 0.0.0.0
+discovery.type: single-node
+
+# Configurações de segurança
+xpack.security.enabled: false
+
+# Configurações de performance
+bootstrap.memory_lock: true
+indices.memory.index_buffer_size: 30%
+
+# Configurações de path
+path.data: /usr/share/elasticsearch/data
+path.logs: /usr/share/elasticsearch/logs

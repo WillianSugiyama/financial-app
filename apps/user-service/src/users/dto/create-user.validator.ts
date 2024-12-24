@@ -1,4 +1,4 @@
-import { CreateUserRequest } from '@app/common/interfaces/proto';
+import { CreateUserRequest } from '@app/common/interfaces/proto/user';
 import { IsEmail, IsString, MinLength } from 'class-validator';
 
 export class CreateUserValidator implements CreateUserRequest {

@@ -1,4 +1,5 @@
-import { CreateUserRequest, UpdateUserRequest, UserResponse } from '@app/common/interfaces/proto';
+import { CreateUserRequest, UpdateUserRequest, UserResponse } from '@app/common/interfaces/proto/user';
+import { Log } from '@app/common/logging/log.decorator';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import * as bcrypt from 'bcrypt';
@@ -10,7 +11,13 @@ export class UsersService {
   constructor(
     @InjectModel(User.name) private userModel: Model<UserDocument>,
   ) {}
-
+  @Log({
+    serviceName: 'UserService',
+    additionalMetadata: {
+      method: 'Create',
+      date: new Date().toDateString(),
+    }
+  })
   async create(data: CreateUserRequest): Promise<UserResponse> {
     const hashedPassword = await bcrypt.hash(data.password, 10);
     const user = new this.userModel({

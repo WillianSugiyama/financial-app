@@ -1,4 +1,4 @@
-import { UserResponse, UserServiceClient } from '@app/common/interfaces/proto';
+import { UserResponse, UserServiceClient } from '@app/common/interfaces/proto/user';
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';

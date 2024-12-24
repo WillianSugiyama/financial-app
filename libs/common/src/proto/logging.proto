@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package logging;
+
+service LoggingService {
+  rpc CreateLog (LogRequest) returns (LogResponse) {}
+  rpc CreateBatchLog (BatchLogRequest) returns (BatchLogResponse) {}
+}
+
+message LogRequest {
+  string service_name = 1;
+  string level = 2;
+  string message = 3;
+  map<string, string> metadata = 4;
+  int64 timestamp = 5;
+}
+
+message LogResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message BatchLogRequest {
+  repeated LogRequest logs = 1;
+}
+
+message BatchLogResponse {
+  bool success = 1;
+  string message = 2;
+  int32 processed_count = 3;
+}

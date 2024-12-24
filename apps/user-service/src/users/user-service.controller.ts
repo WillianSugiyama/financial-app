@@ -5,7 +5,7 @@ import {
   UpdateUserRequest,
   UserResponse,
   UsersResponse
-} from '@app/common/interfaces/proto';
+} from '@app/common/interfaces/proto/user';
 import { Controller, UseInterceptors } from '@nestjs/common';
 import { GrpcMethod } from '@nestjs/microservices';
 import { ValidationInterceptor } from '../interceptors/validation.interceptor';

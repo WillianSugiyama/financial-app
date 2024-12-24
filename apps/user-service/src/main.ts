@@ -1,10 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { Transport } from '@nestjs/microservices';
 import { join } from 'path';
+import { createWinstonLogger } from '../../logging-service/src/winston.config';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice(AppModule, {
+    logger: createWinstonLogger('user-service'),
     transport: Transport.GRPC,
     options: {
       package: 'user',

@@ -1,0 +1,6 @@
+http.host: "0.0.0.0"
+
+# Configurações de pipeline
+pipeline.workers: 2
+pipeline.batch.size: 125
+pipeline.batch.delay: 50

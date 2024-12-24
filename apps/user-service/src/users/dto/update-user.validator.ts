@@ -1,4 +1,4 @@
-import { UpdateUserRequest } from '@app/common/interfaces/proto';
+import { UpdateUserRequest } from '@app/common/interfaces/proto/user';
 import { IsEmail, IsOptional, IsString, MinLength } from 'class-validator';
 
 export class UpdateUserValidator implements Omit<UpdateUserRequest, 'id'> {
