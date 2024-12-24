@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package user;
+
+service UserService {
+  rpc Create (CreateUserRequest) returns (UserResponse) {}
+  rpc FindOne (FindOneRequest) returns (UserResponse) {}
+  rpc FindAll (Empty) returns (UsersResponse) {}
+  rpc Update (UpdateUserRequest) returns (UserResponse) {}
+  rpc Delete (FindOneRequest) returns (Empty) {}
+  rpc UploadPhoto (stream PhotoUpload) returns (PhotoResponse) {}
+}
+
+message Empty {}
+
+message CreateUserRequest {
+  string email = 1;
+  string password = 2;
+  string name = 3;
+}
+
+message FindOneRequest {
+  string id = 1;
+}
+
+message UpdateUserRequest {
+  string id = 1;
+  optional string email = 2;
+  optional string password = 3;
+  optional string name = 4;
+}
+
+message UserResponse {
+  string id = 1;
+  string email = 2;
+  string name = 3;
+  optional string photoUrl = 4;
+  string createdAt = 5;
+  string updatedAt = 6;
+}
+
+message UsersResponse {
+  repeated UserResponse users = 1;
+}
+
+message PhotoUpload {
+  bytes data = 1;
+  string filename = 2;
+  string contentType = 3;
+}
+
+message PhotoResponse {
+  string url = 1;
+}
