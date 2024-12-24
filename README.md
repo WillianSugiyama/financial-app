@@ -1,99 +1,234 @@
+# Microservices Finance App
+
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+  <a href="#overview">Overview</a> •
+  <a href="#architecture">Architecture</a> •
+  <a href="#tech-stack">Tech Stack</a> •
+  <a href="#getting-started">Getting Started</a> •
+  <a href="#development">Development</a> •
+  <a href="#documentation">Documentation</a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Overview
+Finance App is a modern financial management application built using a microservices architecture. It provides a robust platform for personal and family finance management, featuring real-time data processing, AI-powered insights, and comprehensive financial tracking.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Architecture
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Project setup
-
-```bash
-$ pnpm install
+### Core Services
+```
+finance-app/
+├── apps/
+│   ├── api-gateway/          # GraphQL API Gateway
+│   ├── user-service/         # User Management Service
+│   ├── logging-service/      # Centralized Logging Service
+│   ├── family-service/       # Family Management Service (TODO)
+│   ├── financial-service/    # Financial Operations Service (TODO)
+│   ├── balance-service/      # Balance Management Service (TODO)
+│   ├── bank-service/         # Bank Integration Service (TODO)
+│   └── ai-chat-service/      # AI Assistant Service (TODO)
+├── libs/
+│   └── common/              # Shared Code
+│       ├── src/
+│       │   ├── proto/       # Protocol Buffers
+│       │   ├── interfaces/  # TypeScript Interfaces
+│       │   └── logging/     # Logging Infrastructure
+└── docker/
+    ├── docker-compose.yml
+    └── elk/                 # ELK Stack Configuration
 ```
 
-## Compile and run the project
+### Service Ports
+| Service           | Port  | Protocol |
+|-------------------|-------|----------|
+| API Gateway       | 3000  | GraphQL  |
+| User Service      | 50051 | gRPC     |
+| Family Service    | 50052 | gRPC     |
+| Financial Service | 50053 | gRPC     |
+| Balance Service   | 50054 | gRPC     |
+| Bank Service      | 50055 | gRPC     |
+| AI Chat Service   | 50056 | gRPC     |
 
+## Tech Stack
+
+### Core Technologies
+- **Backend**: NestJS with TypeScript
+- **API Gateway**: GraphQL
+- **Microservices Communication**: gRPC
+- **Database**: MongoDB
+- **Logging**: ELK Stack (Elasticsearch, Logstash, Kibana)
+- **Containerization**: Docker & Docker Compose
+
+### Monitoring & Logging
+- Elasticsearch for log storage
+- Logstash for log processing
+- Kibana for visualization
+- Custom logging service with Winston
+
+## Getting Started
+
+### Prerequisites
+- Node.js (v18 or higher)
+- Docker and Docker Compose
+- MongoDB
+- pnpm (recommended) or npm
+
+### Installation
+
+1. Clone the repository
 ```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+git clone https://github.com/yourusername/finance-app.git
+cd finance-app
 ```
 
-## Run tests
-
+2. Install dependencies
 ```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+pnpm install
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
+3. Set up environment variables
 ```bash
-$ pnpm install -g mau
-$ mau deploy
+cp .env.example .env
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+4. Start the ELK Stack
+```bash
+docker-compose -f docker/elk/docker-compose.yml up -d
+```
 
-## Resources
+5. Start the development servers
+```bash
+pnpm start:dev
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+### Environment Setup
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+Create `.env` files for each service:
 
-## Support
+```env
+# User Service (.env)
+MONGODB_URI=mongodb://root:root123@localhost:27017/user_db?authSource=admin
+GRPC_PORT=50051
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+# API Gateway (.env)
+USER_SERVICE_URL=localhost:50051
+PORT=3000
+```
 
-## Stay in touch
+## Development
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Available Scripts
+```json
+{
+  "scripts": {
+    "start:dev:user": "nest start user-service --watch",
+    "start:dev:gateway": "nest start api-gateway --watch",
+    "start:dev": "concurrently \"npm run start:dev:user\" \"npm run start:dev:gateway\"",
+    "build": "nest build user-service && nest build api-gateway"
+  }
+}
+```
+
+### Testing the API
+
+#### GraphQL API
+Access GraphQL Playground: http://localhost:3000/graphql
+
+Example mutation:
+```graphql
+mutation {
+  createUser(input: {
+    email: "test@example.com"
+    password: "123456"
+    name: "Test User"
+  }) {
+    id
+    email
+    name
+  }
+}
+```
+
+#### gRPC Services
+Using grpcurl for testing:
+```bash
+grpcurl -plaintext -d '{
+  "email": "test@example.com",
+  "password": "123456",
+  "name": "Test User"
+}' localhost:50051 user.UserService/Create
+```
+
+### Logging System
+
+Access Kibana dashboard:
+- URL: http://localhost:5601
+- Default index pattern: `finance-app-logs-*`
+
+Example of using the logging decorator:
+```typescript
+import { Log } from '@app/common/logging';
+
+@Injectable()
+export class UserService {
+  @Log({ serviceName: 'user-service' })
+  async createUser(data: CreateUserDto) {
+    // Implementation
+  }
+}
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch
+```bash
+git checkout -b feature/amazing-feature
+```
+3. Commit your changes
+```bash
+git commit -m 'Add amazing feature'
+```
+4. Push to the branch
+```bash
+git push origin feature/amazing-feature
+```
+5. Open a Pull Request
 
 ## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## Roadmap
+
+### Phase 1 - Core Infrastructure ✅
+- [x] Project setup
+- [x] User service implementation
+- [x] API Gateway
+- [x] Logging service
+
+### Phase 2 - Basic Features ⏳
+- [ ] Family service
+- [ ] Financial service
+- [ ] Authentication & Authorization
+- [ ] Basic financial operations
+
+### Phase 3 - Advanced Features 🚧
+- [ ] Balance tracking
+- [ ] Bank integration
+- [ ] AI-powered insights
+- [ ] Advanced analytics
+
+### Phase 4 - Production Ready 📈
+- [ ] Comprehensive testing
+- [ ] CI/CD pipeline
+- [ ] Documentation
+- [ ] Performance optimization
+
+## Support
+For support, email contato@williansugiyama.com
+
+## Acknowledgments
+- NestJS Documentation
+- gRPC Documentation
+- GraphQL Documentation
+- MongoDB Documentation
+- Elastic Stack Documentation
